@@ -6,8 +6,8 @@ interface ItemsGridProps {
   items: Item[];
   mikhalKamaPrice: number;
   draconiroKamaPrice: number;
-  onUpdatePrice: (id: string, server: Server, price: number | null) => void;
-  onRemove: (id: string) => void;
+  onUpdatePrice: (id: number, server: Server, price: number | null) => void;
+  onRemove: (id: number) => void;
 }
 
 export function ItemsGrid({
@@ -58,4 +58,3 @@ export function ItemsGrid({
     </section>
   );
 }
-

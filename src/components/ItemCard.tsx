@@ -9,8 +9,8 @@ interface ItemCardProps {
   item: Item;
   analysis: TradeAnalysis | null;
   index: number;
-  onUpdatePrice: (id: string, server: Server, price: number | null) => void;
-  onRemove: (id: string) => void;
+  onUpdatePrice: (id: number, server: Server, price: number | null) => void;
+  onRemove: (id: number) => void;
 }
 
 export function ItemCard({
@@ -22,7 +22,11 @@ export function ItemCard({
 }: ItemCardProps) {
   const cardClasses = `
     animate-fade-in bg-(--card-bg) border rounded-xl p-4
-    ${analysis ? getRecommendationStyles(analysis.recommendation) : "border-(--card-border)"}
+    ${
+      analysis
+        ? getRecommendationStyles(analysis.recommendation)
+        : "border-(--card-border)"
+    }
     ${analysis?.recommendation === "excellent" ? "profit-glow" : ""}
   `;
 
@@ -61,9 +65,9 @@ export function ItemCard({
           onChange={(price) => onUpdatePrice(item.id, "mikhal", price)}
         />
         <PriceInput
-          server="draconiro"
+          server="draconiros"
           value={item.draconiroPrice}
-          onChange={(price) => onUpdatePrice(item.id, "draconiro", price)}
+          onChange={(price) => onUpdatePrice(item.id, "draconiros", price)}
         />
       </div>
 
@@ -95,7 +99,7 @@ function PriceInput({ server, value, onChange }: PriceInputProps) {
       borderClass: "border-(--mikhal-accent)/30",
       focusClass: "focus:border-(--mikhal-accent)",
     },
-    draconiro: {
+    draconiros: {
       label: "Draconiros",
       dotClass: "bg-(--draconiros-accent)",
       borderClass: "border-(--draconiros-accent)/30",
@@ -149,4 +153,3 @@ function AnalysisResult({ analysis }: AnalysisResultProps) {
     </div>
   );
 }
-

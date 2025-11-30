@@ -12,7 +12,7 @@ const serverConfig = {
     accentClass: "bg-(--mikhal-accent)",
     focusClass: "focus:border-(--mikhal-accent)",
   },
-  draconiro: {
+  draconiros: {
     label: "Draconiros Kama Price",
     accentClass: "bg-(--draconiros-accent)",
     focusClass: "focus:border-(--draconiros-accent)",
@@ -47,4 +47,3 @@ export function KamaPriceInput({
     </div>
   );
 }
-

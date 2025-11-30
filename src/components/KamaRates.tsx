@@ -34,7 +34,7 @@ export function KamaRates({
           onChange={onMikhalChange}
         />
         <KamaPriceInput
-          server="draconiro"
+          server="draconiros"
           value={draconiroKamaPrice}
           onChange={onDraconiroChange}
         />
@@ -55,4 +55,3 @@ export function KamaRates({
     </section>
   );
 }
-
