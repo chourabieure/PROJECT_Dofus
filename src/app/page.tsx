@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Toaster } from "react-hot-toast";
 import {
   Header,
@@ -14,7 +15,7 @@ import {
 } from "@/components";
 import { useItems, useServerEconomy } from "@/hooks";
 
-export default function Home() {
+function Home() {
   const {
     mikhalKamaPrice,
     draconiroKamaPrice,
@@ -96,3 +97,6 @@ export default function Home() {
     </div>
   );
 }
+
+// Disable static generation - this page requires runtime env vars
+export default dynamic(() => Promise.resolve(Home), { ssr: false });
