@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 import { createClient as createServerClient } from "@/lib/supabase/server";
 
 export async function signIn(formData: FormData) {
@@ -24,13 +25,26 @@ export async function signIn(formData: FormData) {
 
 export async function signUp(formData: FormData) {
   const supabase = await createServerClient();
+  const headersList = await headers();
+  const origin = headersList.get("origin") || headersList.get("host") || "";
+
+  // Construct the full origin URL
+  const protocol = origin.includes("localhost") ? "http" : "https";
+  const baseUrl = origin.startsWith("http")
+    ? origin
+    : `${protocol}://${origin}`;
 
   const data = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
   };
 
-  const { error } = await supabase.auth.signUp(data);
+  const { error } = await supabase.auth.signUp({
+    ...data,
+    options: {
+      emailRedirectTo: `${baseUrl}/auth/callback`,
+    },
+  });
 
   if (error) {
     return { error: error.message };
