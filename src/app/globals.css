@@ -1,26 +1,100 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #1a1512;
+  --foreground: #f4e4c1;
+  --card-bg: #241e18;
+  --card-border: #3d3226;
+  --accent-gold: #d4a854;
+  --accent-copper: #b87333;
+  --accent-emerald: #2d9b4c;
+  --accent-ruby: #c94a4a;
+  --text-muted: #a39480;
+  --input-bg: #1e1814;
+  --mikhal-accent: #7c5cbf;
+  --draconiros-accent: #c44d4d;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--card-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-copper);
+}
+
+/* Input number arrows removal */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(212, 168, 84, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(212, 168, 84, 0.6);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.profit-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Background pattern */
+.bg-pattern {
+  background-image: radial-gradient(
+      circle at 20% 50%,
+      rgba(212, 168, 84, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 50%,
+      rgba(184, 115, 51, 0.03) 0%,
+      transparent 50%
+    ),
+    linear-gradient(180deg, #1a1512 0%, #12100d 100%);
 }
